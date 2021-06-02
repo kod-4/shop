@@ -3,8 +3,11 @@
 {% block title %}Couleur index{% endblock %}
 
 {% block body %}
-    <h1>Couleur index</h1>
-
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h1>Couleur index</h1>
+        <a class="btn btn-outline-primary p-3" href="{{ path('couleur_new') }}">Créer <i class="far fa-plus-square"></i></a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -23,8 +26,10 @@
                 <td>{{ couleur.description }}</td>
                 <td>{{ couleur.active ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('couleur_show', {'id': couleur.id}) }}">show</a>
-                    <a href="{{ path('couleur_edit', {'id': couleur.id}) }}">edit</a>
+                    <div class="d-flex">
+                        <a class="link-secondary me-2" href="{{ path('couleur_show', {'id': couleur.id}) }}"><i class="far fa-eye"></i></a>
+                        <a href="{{ path('couleur_edit', {'id': couleur.id}) }}"><i class="far fa-edit"></i></a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +39,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('couleur_new') }}">Create new</a>
+</div>
 {% endblock %}

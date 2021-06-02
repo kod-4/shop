@@ -3,8 +3,11 @@
 {% block title %}Couleur{% endblock %}
 
 {% block body %}
-    <h1>Couleur</h1>
-
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h1>Couleur</h1>
+        <a class="btn btn-outline-primary p-3" href="{{ path('couleur_index') }}"><i class="fas fa-hand-point-left"></i> Back</a>
+    </div>
     <table class="table">
         <tbody>
             <tr>
@@ -25,10 +28,7 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('couleur_index') }}">back to list</a>
-
-    <a href="{{ path('couleur_edit', {'id': couleur.id}) }}">edit</a>
-
+    <a class="btn btn-outline-primary mt-2" href="{{ path('couleur_edit', {'id': couleur.id}) }}"><i class="far fa-edit"></i></a>
     {{ include('couleur/_delete_form.html.twig') }}
+</div>
 {% endblock %}

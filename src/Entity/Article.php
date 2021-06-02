@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -33,7 +34,7 @@ class Article
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="livres", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="articles", fileNameProperty="image")
      * 
      * @var File|null
      */
@@ -60,6 +61,17 @@ class Article
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="articles")
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Couleur::class, inversedBy="articles")
+     */
+    private $couleur;
+
 
 
     public function getId(): ?int
@@ -157,7 +169,7 @@ class Article
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         // Si le paramètre $updatedAt reçu est null on instancie une nouvelle date
         // que l'on affecte à la variable.
@@ -166,5 +178,31 @@ class Article
 
         return $this;
     }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getCouleur(): ?Couleur
+    {
+        return $this->couleur;
+    }
+
+    public function setCouleur(?Couleur $couleur): self
+    {
+        $this->couleur = $couleur;
+
+        return $this;
+    }
+
+
 
 }

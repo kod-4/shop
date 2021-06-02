@@ -12,7 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CouleurController extends AbstractController
 {
-    #[Route('/admin/couleur', name: 'couleur_index', methods: ['GET'])]
+    /**
+     * @Route("/admin/couleur", name="couleur_index", methods={"GET"})
+     */
+    // #[Route('/admin/couleur', name: 'couleur_index', methods: ['GET'])]
     public function index(CouleurRepository $couleurRepository): Response
     {
         return $this->render('couleur/index.html.twig', [
@@ -20,7 +23,10 @@ class CouleurController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/couleur/new', name: 'couleur_new', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/admin/couleur/new", name="couleur_new", methods={"GET", "POST"})
+     */
+    // #[Route('/admin/couleur/new', name: 'couleur_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $couleur = new Couleur();
@@ -41,7 +47,10 @@ class CouleurController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/couleur/{id}', name: 'couleur_show', methods: ['GET'])]
+    /**
+     * @Route("/admin/couleur/{id}", name="couleur_show", methods={"GET"})
+     */
+    // #[Route('/admin/couleur/{id}', name: 'couleur_show', methods: ['GET'])]
     public function show(Couleur $couleur): Response
     {
         return $this->render('couleur/show.html.twig', [
@@ -49,7 +58,10 @@ class CouleurController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/couleur/{id}/edit', name: 'couleur_edit', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/admin/couleur/{id}/edit", name="couleur_edit", methods={"GET", "POST"})
+     */
+    // #[Route('/admin/couleur/{id}/edit', name: 'couleur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Couleur $couleur): Response
     {
         $form = $this->createForm(CouleurType::class, $couleur);
@@ -67,7 +79,10 @@ class CouleurController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/couleur/{id}', name: 'couleur_delete', methods: ['POST'])]
+    /**
+     * @Route("/admin/couleur/{id}", name="couleur_delete", methods={"POST"})
+     */
+    // #[Route('/admin/couleur/{id}', name: 'couleur_delete', methods: ['POST'])]
     public function delete(Request $request, Couleur $couleur): Response
     {
         if ($this->isCsrfTokenValid('delete'.$couleur->getId(), $request->request->get('_token'))) {

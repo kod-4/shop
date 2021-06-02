@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ article.image }}</td>
+                <td><img src="{{ asset('images/articles/' ~ article.image) }}" alt="article img" class="img-list"></td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -28,7 +28,15 @@
             </tr>
             <tr>
                 <th>Prix</th>
-                <td>{{ article.prix }}</td>
+                <td>{{ article.prix|number_format(0, '', '.') }} €</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ article.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ article.couleur }}</td>
             </tr>
             <tr>
                 <th>Active</th>

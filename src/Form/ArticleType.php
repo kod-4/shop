@@ -3,10 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Couleur;
+use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticleType extends AbstractType
 {
@@ -15,9 +18,11 @@ class ArticleType extends AbstractType
         $builder
             ->add('titre')
             ->remove('image')
-            ->add('imageFile', FileType::class)
+            ->add('imageFile', FileType::class, ['required' => false])
             ->add('description')
             ->add('prix')
+            ->add('categorie', EntityType::class, ["class" => Categorie::class, 'placeholder' => 'Choisi une catégorie', 'required' => false])
+            ->add('couleur', EntityType::class, ["class" => Couleur::class, 'placeholder' => 'Choisi une couleur', 'required' => false])
             ->add('active')
         ;
     }

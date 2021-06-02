@@ -16,6 +16,8 @@
                 <th>Image</th>
                 <th>Description</th>
                 <th>Prix</th>
+                <th>Categorie</th>
+                <th>Couleur</th>
                 <th>Active</th>
                 <th>actions</th>
             </tr>
@@ -25,9 +27,11 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.titre }}</td>
-                <td>{{ article.image }}</td>
+                <td><img src="{{ asset('images/articles/' ~ article.image) }}" alt="article img" class="img-list"></td>
                 <td>{{ article.description }}</td>
-                <td>{{ article.prix }}</td>
+                <td>{{ article.prix|number_format(0, '', '.') }}</td>
+                <td>{{ article.categorie }}</td>
+                <td>{{ article.couleur }}</td>
                 <td>{{ article.active ? 'Yes' : 'No' }}</td>
                 <td>
                     <div class="d-flex">

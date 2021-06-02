@@ -5,14 +5,28 @@ namespace App\Controller;
 use App\Entity\Home;
 use App\Form\HomeType;
 use App\Repository\HomeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('admin/home/', name: 'home_index', methods: ['GET'])]
+    /**
+     * @Route("/index", name="home_page")
+     */
+    public function homeFront(HomeRepository $homeRepository, ArticleRepository $articleRepository): Response {
+        $home = $homeRepository->findOneBy(["active" => 1]);
+        $articles = $articleRepository->findBy(["active" => 1]);
+        return $this->render('home/home.html.twig', [
+            'home' => $home,
+            'articles' => $articles
+        ]);
+    }
+    /**
+     * @Route("/admin/home", name="home_index", methods={"GET"})
+     */
     public function index(HomeRepository $homeRepository): Response
     {
         return $this->render('home/index.html.twig', [
@@ -20,7 +34,9 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('admin/home/new', name: 'home_new', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/admin/home/new", name="home_new", methods={"GET", "POST"})
+     */
     public function new(Request $request): Response
     {
         $home = new Home();
@@ -41,7 +57,9 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('admin/home/{id}', name: 'home_show', methods: ['GET'])]
+    /**
+     * @Route("/admin/home/{id}", name="home_show", methods={"GET"})
+     */
     public function show(Home $home): Response
     {
         return $this->render('home/show.html.twig', [
@@ -49,7 +67,9 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('admin/home/{id}/edit', name: 'home_edit', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/admin/home/{id}/edit", name="home_edit", methods={"GET", "POST"})
+     */
     public function edit(Request $request, Home $home): Response
     {
         $form = $this->createForm(HomeType::class, $home);
@@ -67,6 +87,9 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/home/{id}", name="home_delete", methods={"POST"})
+     */
     #[Route('admin/home/{id}', name: 'home_delete', methods: ['POST'])]
     public function delete(Request $request, Home $home): Response
     {
