@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Home{% endblock %}
+
+{% block body %}
+<div class="col-8 mt-5 mx-auto">
+    <div class="d-flex justify-content-between">
+        <h1>Edit Home</h1>
+        <a class="btn btn-outline-primary p-3" href="{{ path('home_index') }}"><i class="fas fa-hand-point-left"></i> Back</a>
+    </div>
+    {{ include('home/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('home/_delete_form.html.twig') }}
+</div>
+{% endblock %}

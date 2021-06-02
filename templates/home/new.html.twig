@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Home{% endblock %}
+
+{% block body %}
+<div class="col-6 mx-auto mt-5">
+    <div class="d-flex justify-content-between">
+        <h1>Create new Home</h1>
+        <a class="btn btn-outline-primary p-3" href="{{ path('home_index') }}"><i class="fas fa-hand-point-left"></i> Retour</a>
+    </div>
+    {{ include('home/_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Carter+One&family=Denk+One&family=Tenor+Sans&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    body {
+        font-family: 'Tenor Sans', sans-serif;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Denk One', sans-serif;
+        }
+        nav {
+            .navbar-brand {
+                font-family: 'Carter One', cursive;
+            }
+            .nav-link {
+                font-family: 'Denk One', sans-serif;
+            }
+        }
+    }
+}
